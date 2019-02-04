@@ -8,7 +8,7 @@ Uses Eclipse Jee 2018-12
 4) Then use the clone command:   git clone https://github.com/MattBell-SA/GolfersStats.git
 5) In Eclipse, go to File -> Import and in the Wizard select General/Projects from Folder or Archive.
 6) Select all and click Finish.
-7) Build and run on server.
+7) Build and run on Tomcat 8.0 server.
 8) Go to http://localhost:8084/GolfersStats/rest/golfer
 
 Json should appear:
