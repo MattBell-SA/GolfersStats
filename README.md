@@ -9,7 +9,69 @@ Uses Eclipse Jee 2018-12
 5) In Eclipse, go to File -> Import and in the Wizard select General/Projects from Folder or Archive.
 6) Select all and click Finish.
 7) Build and run on Tomcat 8.0 server.
-8) Go to http://localhost:8084/GolfersStats/rest/golfer
+
+8) Create the database in PostgreSQL using pgAdmin4:
+
+CREATE DATABASE golf
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'English_United States.1252'
+    LC_CTYPE = 'English_United States.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+
+
+CREATE SCHEMA public
+    AUTHORIZATION postgres;
+
+COMMENT ON SCHEMA public
+    IS 'standard public schema';
+
+GRANT ALL ON SCHEMA public TO postgres;
+
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+CREATE SEQUENCE public."GOLFER_GOLFER_ID_seq";
+
+ALTER SEQUENCE public."GOLFER_GOLFER_ID_seq"
+    OWNER TO postgres;
+
+CREATE TABLE public."GOLFER"
+(
+    "GOLFER_ID" integer NOT NULL DEFAULT nextval('"GOLFER_GOLFER_ID_seq"'::regclass),
+    "GOLFER_TITLE" character varying(10) COLLATE pg_catalog."default",
+    "GOLFER_NAME" character varying(200) COLLATE pg_catalog."default",
+    "GOLFER_ADRESS" character varying(200) COLLATE pg_catalog."default",
+    "GOLFER_HOME_COURSE" character varying(200) COLLATE pg_catalog."default",
+    CONSTRAINT "GOLFER_ID_PK" PRIMARY KEY ("GOLFER_ID")
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public."GOLFER"
+    OWNER to postgres;
+
+
+9) Insert Data
+
+INSERT INTO public."GOLFER"(
+	"GOLFER_TITLE", "GOLFER_NAME", "GOLFER_ADRESS", "GOLFER_HOME_COURSE")
+	VALUES ('Mr', 'John Rahm', 'New York', 'Royal New York');
+  
+INSERT INTO public."GOLFER"(
+	"GOLFER_TITLE", "GOLFER_NAME", "GOLFER_ADRESS", "GOLFER_HOME_COURSE")
+	VALUES ('Mr', 'Tiger Woods', 'California', 'Royal California');
+  
+INSERT INTO public."GOLFER"(
+	"GOLFER_TITLE", "GOLFER_NAME", "GOLFER_ADRESS", "GOLFER_HOME_COURSE")
+	VALUES ('Mr', 'Sergio Garcia', 'Satiago', 'Royal Norwood');
+
+
+10) Go to http://localhost:8084/GolfersStats/rest/golfer
 
 Json should appear:
 
