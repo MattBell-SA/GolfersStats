@@ -10,7 +10,7 @@ Uses Eclipse Jee 2018-12
 6) Select all and click Finish.
 7) Build and run on Tomcat 8.0 server.
 
-8) Create the database in PostgreSQL using pgAdmin4:
+8) Create the database in PostgreSQL 10.6 using pgAdmin4:
 
 CREATE DATABASE golf
     WITH 
